@@ -32,7 +32,7 @@ io_service_t IOFramebufferPortFromCGDisplayID(CGDirectDisplayID displayID, CFStr
     io_iterator_t iter;
     io_service_t serv, servicePort = 0;
 
-    kern_return_t err = IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching(IOFRAMEBUFFER_CONFORMSTO), &iter);
+    kern_return_t err = IOServiceGetMatchingServices(kIOMainPortDefault, IOServiceMatching(IOFRAMEBUFFER_CONFORMSTO), &iter);
 
     if (err != KERN_SUCCESS)
         return 0;
@@ -312,7 +312,7 @@ UInt32 SupportedTransactionType() {
     io_iterator_t   io_objects;
     io_service_t    io_service;
 
-    kr = IOServiceGetMatchingServices(kIOMasterPortDefault,
+    kr = IOServiceGetMatchingServices(kIOMainPortDefault,
                                       IOServiceNameMatching("IOFramebufferI2CInterface"), &io_objects);
 
     if (kr != KERN_SUCCESS) {
